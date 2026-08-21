@@ -10,7 +10,6 @@
 #define GAME_STATE_WON 2
 #define GAME_STATE_LOST 3
 
-
 Vector2 snake[TOTAL_SQUARES];
 int length;
 int head_index;
@@ -35,6 +34,7 @@ void update_game_state();
 int main()
 {
 	InitWindow(WIDTH, HEIGHT, "Snake");
+	SetExitKey(KEY_NULL);
 	SetTargetFPS(FPS);
 	initialize_game();
 
@@ -156,8 +156,6 @@ int has_won()
 	return length == (WIDTH * HEIGHT) / (SQUARE_SIZE * SQUARE_SIZE); 
 }
 
-
-
 void update_game_state()
 {
 	if (has_won())
@@ -170,7 +168,7 @@ void update_game_state()
 		game_state = GAME_STATE_LOST;
 		return;
 	}
-	if (IsKeyPressed(KEY_P))
+	if (IsKeyPressed(KEY_ESCAPE))
 	{
 		if (game_state == GAME_STATE_RUNNING) game_state = GAME_STATE_PAUSED;
 		else if (game_state == GAME_STATE_PAUSED) game_state = GAME_STATE_RUNNING;
@@ -245,5 +243,3 @@ void draw_game()
 		}
 	}
 }
-
-
